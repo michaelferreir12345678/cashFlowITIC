@@ -8,9 +8,10 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
+import java.util.Date;
 
 @Entity
-@Table(name = 'servico')
+@Table(name = "servico")
 @Data
 
 public class Servico{
@@ -21,7 +22,7 @@ public class Servico{
     private String nomeCliente;
 
     @Temporal(TemporalType.DATE)
-    private Date dataInicio=new Servico();
+    private Date dataInicio=new Date();
 
     @Temporal(TemporalType.DATE)
     private Date dataTermino;
