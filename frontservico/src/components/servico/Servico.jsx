@@ -11,12 +11,32 @@ function Servico() {
 
 
   useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/servico/')
-      .then(result => {
-        setServicos(result.data);
-      })
+    buscarTodos()
   }, [atualizar]);
+
+  function buscarTodos(){
+    axios
+    .get('http://localhost:8080/api/servico/')
+    .then(result => {
+      setServicos(result.data);
+    });
+  }
+
+  function buscarPagamentoPendente(){
+    axios
+    .get('http://localhost:8080/api/servico/pagamentoPendente')
+    .then(result => {
+      setServicos(result.data);
+    });
+  }
+
+  function buscarCancelados(){
+    axios
+    .get('http://localhost:8080/api/servico/cancelados')
+    .then(result => {
+      setServicos(result.data);
+    });
+  }
 
   function handleChange(event) {
     setServico({ ...servico, [event.target.name]: event.target.value })
@@ -49,6 +69,12 @@ function Servico() {
 
   function excluir(id){
     axios.delete('http://localhost:8080/api/servico/'+id).then(result => {
+      setAtulizar(result);
+    });
+  }
+
+    function cancelar(id){
+    axios.post('http://localhost:8080/api/servico/'+id).then(result => {
       setAtulizar(result);
     });
   }
@@ -105,6 +131,11 @@ function Servico() {
       </form>
       <hr /><hr />
 
+      <button onClick={buscarTodos} type='button' class='btn btn-primary'>Listar todos </button> &nbsp;&nbsp;
+      <button onClick={buscarPagamentoPendente} type='button' class='btn btn-secondary'> Pagamentos pendentes </button>&nbsp;&nbsp;
+      <button onClick={buscarCancelados} type='button' class='btn btn-success'>Serviços cancelados</button>
+
+
       <table class="table">
         <thead>
           <tr>
@@ -130,7 +161,7 @@ function Servico() {
                 {serv.status != "cancelado" &&
                   <button onClick={() => excluir(serv.id)} className='btn btn-warning'>Excluir</button>
                 }&nbsp;&nbsp;
-                <button className='btn btn-danger'>Cancelar</button>
+                <button onClick={() => cancelar(serv.id)} className='btn btn-danger'>Cancelar</button>
               </td>
             </tr>
           ))
@@ -138,6 +169,7 @@ function Servico() {
 
         </tbody>
       </table>
+
     </div>
 
   );
