@@ -18,35 +18,18 @@ public class ServicoService {
          return servicoRepository.findAll();
     }
 
-    public List<Servico> buscarServicosPagamentoPendente(){
-        return servicoRepository.buscarServicosPagamentoPendente();
-    }; 
 
     public List<Servico> buscarServicosCancelados(){
         return servicoRepository.buscarServicosCancelados();
     };
 
     public Servico inserir(Servico servico){
-        if(servico.getValorPago()==null || servico.getValorPago()==0 || servico.getDataPagamento()==null){
-            servico.setStatus("Pendente");
-        } else {
-            servico.setStatus("Realizado");
-        }
         Servico servicoBanco = servicoRepository.save(servico);
         return servicoBanco;         
     }
 
     public Servico alterar(Servico servico){
-        if(servico.getValorPago()!=null && servico.getValorPago()>0 && servico.getDataPagamento()!=null){
-            servico.setStatus("realizado");
-        }
         return servicoRepository.saveAndFlush(servico);
-    }
-
-    public void cancelarServico(Long id){
-        Servico servico = servicoRepository.findById(id).get();
-        servico.setStatus("cancelado");
-        servicoRepository.save(servico);
     }
 
     public void excluir(Long id){

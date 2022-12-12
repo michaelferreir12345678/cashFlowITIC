@@ -11,27 +11,63 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "servico")
+@Table(name = "receitas")
 @Data
+
+// classe das receitas 'serviço'
 
 public class Servico{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nomeCliente;
+    private String descricaoReceita;
 
     @Temporal(TemporalType.DATE)
-    private Date dataInicio=new Date();
+    private Date dataReceita=new Date();
 
-    @Temporal(TemporalType.DATE)
-    private Date dataTermino;
     private String descricaoServico;
-    private Double valorServico;
-    private Double valorPago;
- 
-    @Temporal(TemporalType.DATE)
-    private Date dataPagamento;
+    private Double valorReceita;
+
+
     private String status; //"Pendente", "Realizado" ou "Cancelado"
-         
-}
+
+    public Servico(long id, String descricaoReceita, Date dataReceita, Double valorReceita) {
+		super();
+		this.id = id;
+		this.descricaoReceita = descricaoReceita;
+		this.dataReceita = dataReceita;
+		this.valorReceita = valorReceita;
+	}
+
+    public Servico() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getDescricaoReceita() {
+		return descricaoReceita;
+	}
+	public void setDescricaoReceita(String descricaoReceita) {
+		this.descricaoReceita = descricaoReceita;
+	}
+	public Date getDataReceita() {
+		return dataReceita;
+	}
+	public void setDataReceita(Date dataReceita) {
+		this.dataReceita = dataReceita;
+	}
+	public Double getValorReceita() {
+		return valorReceita;
+	}
+	public void setValorReceita(Double valorReceita) {
+		this.valorReceita = valorReceita;
+	}
+	
+};
+
