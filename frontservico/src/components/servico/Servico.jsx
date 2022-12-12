@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Servico.css';
+// import './Servico.css';
 import axios from 'axios';
 
 function Servico() {
@@ -30,6 +30,11 @@ function Servico() {
     setServico({ dataReceita: '', descricaoReceita: '', descricaoServico: '', valorReceita: '' });
 
 
+  }
+
+  function dataBDFormatar(date){
+    var strData = date.substr(8, 2)+"/"+date.substr(5, 2)+"/"+date.substr(0, 4);
+      return strData;
   }
 
   function handleSubmit(event) {
@@ -101,11 +106,16 @@ function Servico() {
       </form>
       <hr /><hr />
 
+      
       <button onClick={buscarTodos} type='button' class='btn btn-primary'>Listar todos </button> &nbsp;&nbsp;
+      <button type='button' class='btn btn-secondary'>Importar XLMS</button> &nbsp;&nbsp;
+      <button type='button' class='btn btn-secondary'>Exportar XLMS</button>
+
 
       <table class="table">
         <thead>
           <tr>
+            <th scope="col">Data da Receita</th>
             <th scope="col">Descrição da receita</th>
             <th scope="col">Valor</th>
             <th scope="col">Status</th>
@@ -118,6 +128,7 @@ function Servico() {
         <tbody>
           {servicos.map(serv => (
             <tr key={serv.id}>
+              <td>{dataBDFormatar(serv.dataReceita)}</td>
               <td>{serv.descricaoReceita}</td>
               <td>{serv.valorReceita}</td>
               <td>{serv.status}</td>
