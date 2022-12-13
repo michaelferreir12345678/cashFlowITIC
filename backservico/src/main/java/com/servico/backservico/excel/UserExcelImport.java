@@ -1,8 +1,8 @@
-package com.servico.backservico.entity;
+package com.servico.backservico.excel;
 
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +11,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.servico.backservico.entity.Servico;
 
 public class UserExcelImport {
 	public List<Servico> excelImport(){
@@ -74,65 +76,3 @@ public class UserExcelImport {
 	};
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// public class UserExcelImport {    
-//     private List<Servico> processarArquivo(String pathFile){
-//     	XSSFWorkbook wb = null;
-//     	List<Servico> lista = new ArrayList<Servico>();
-        
-//     	try {    		
-//         	// Leitura
-//     		FileInputStream fi = new FileInputStream(new File(pathFile));
-
-//     		// Carregando workbook
-//     		wb = new XSSFWorkbook(fi);
-
-//     		// Selecionando a primeira aba
-//     		XSSFSheet s = wb.getSheetAt(0);
-    		    		
-//     		int i = 1;
-//     		//Para cada linha da planilha
-//     		for (Row rowFor : s) {
-//     			if(i <= 1){//Primeira linha com o header
-//     				i++;
-//     				continue;
-//     			} 
-
-//     			String descricao = rowFor.getCell(0).getStringCellValue();
-//     			java.util.Date data = rowFor.getCell(1).getDateCellValue();
-//     			double valor = rowFor.getCell(2).getNumericCellValue();
-    			
-//     			Servico r = new Servico();
-//     			r.setDescricaoReceita(descricao);
-//     			r.setDataReceita(data);
-//     			r.setValorReceita(valor);
-//     			lista.add(r);
-//     		}  				    	
-//     	}catch(IOException ex) {
-//     		ex.printStackTrace();
-//     	}finally {
-//     		if(wb != null) {
-// 				try {
-// 					wb.close();
-// 				} catch (IOException e) {
-// 					e.printStackTrace();
-// 				}
-//     		}
-// 		}	
-//     	return lista;
-//     }    
-// }
-
-

@@ -22,6 +22,14 @@ function Servico() {
       });
   }
 
+  function importExcel() {
+    axios
+      .get('http://localhost:8080/api/receitas/import/excel')
+      .then(result => {
+        setServicos(result.data);
+      });
+  }
+
   function handleChange(event) {
     setServico({ ...servico, [event.target.name]: event.target.value })
   }
@@ -108,7 +116,7 @@ function Servico() {
 
       
       <button onClick={buscarTodos} type='button' class='btn btn-primary'>Listar todos </button> &nbsp;&nbsp;
-      <button type='button' class='btn btn-secondary'>Importar XLMS</button> &nbsp;&nbsp;
+      <button onClick={importExcel} type='button' class='btn btn-secondary'>Importar XLMS</button> &nbsp;&nbsp;
       <button type='button' class='btn btn-secondary'>Exportar XLMS</button>
 
 

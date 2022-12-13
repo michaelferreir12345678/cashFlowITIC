@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.servico.backservico.entity.Servico;
 
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
-    
-    
+        
     @Query("select s from Servico s where s.status = 'cancelado'")
     List<Servico> buscarServicosCancelados();
 }
